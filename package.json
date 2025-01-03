@@ -1,0 +1,12 @@
+{
+  "name": "terminal-explorer",
+  "version": "1.0.0",
+  "description": "Test your git skills through this CLI game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
