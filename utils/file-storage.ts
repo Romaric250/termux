@@ -24,3 +24,17 @@ export async function LoadUsers(): Promise<any>{
 
 }
 
+export async function SaveUsers(users:any[]): Promise<void>{
+
+    try {
+
+        await fs.writeFile(USER_FILE,JSON.stringify({users}), null)
+        
+    } catch (error) {
+        console.error(error)
+
+        
+    }
+
+}
+
