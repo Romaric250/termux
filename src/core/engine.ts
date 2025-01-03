@@ -8,7 +8,13 @@ export class GameEngine{
         this.levels = levels
     }
 
-    public startgame():void {
+    public startGame(): void {
+        console.log("welcome to terminal dimenstion explorer");
+        this.playlevel()
+        
+    }
+
+    public playlevel():void {
         const currentlevel = this.levels[this.currentlevelindex]
         currentlevel.start()
     }
