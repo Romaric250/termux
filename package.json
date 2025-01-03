@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "Test your git skills through this CLI game",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-   "build": "tsc",
-   "start": "node dist/cli.js",
-   "dev": "ts-node src/cli.ts",
-   "test": "jest"
+    "build": "tsc",
+    "start": "node dist/cli.js",
+    "dev": "tsx src/cli.ts",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,7 @@
     "@types/jest": "^29.5.14",
     "jest": "^29.7.0",
     "ts-node": "^10.9.2",
+    "tsx": "^4.19.2",
     "typescript": "^5.7.2"
   },
   "dependencies": {
