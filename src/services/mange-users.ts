@@ -1,5 +1,5 @@
 import { User } from '../models/user';
-import { LoadUsers, SaveUsers} from '../utils/file-storage'; // Adjust relative paths if needed.
+import { LoadUsers, SaveUsers} from '../utils/file-storage';
 
 
 import readline from 'readline';
