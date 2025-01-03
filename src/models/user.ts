@@ -1,8 +1,8 @@
 
-export abstract class User {
-    abstract username:string;
-    abstract email: string;
-    abstract password: string
-
-    public abstract Login(): void 
+export class User {
+    constructor(public username:string, public email:string, private password:string){
+        this.username = username
+        this.email = email
+        this.password = password
+    }
 }
