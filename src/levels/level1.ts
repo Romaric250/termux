@@ -7,6 +7,4 @@ export class Level1 extends Level{
         name = "Level 1 "
         description = "try to find this file"
     }
-    
-
 }

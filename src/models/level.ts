@@ -7,5 +7,7 @@ export class Level{
     }
    
 
-    start(): void
+    start(): void{
+        
+    }
 }
