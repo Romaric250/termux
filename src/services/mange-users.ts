@@ -1,5 +1,6 @@
 import { User } from '../models/user';
-import { LoadUsers, SaveUsers} from '../../utils/file-storage';
+import { LoadUsers, SaveUsers} from '../utils/file-storage'; // Adjust relative paths if needed.
+
 
 import readline from 'readline';
 
@@ -17,7 +18,7 @@ async function register() {
     const email = await askQuestion('Enter email: ');
     const password = await askQuestion('Enter password: ');
 
-    const users = await loadUsers();
+    const users = await LoadUsers();
 
     if (users.find((u) => u.username === username)) {
         console.log('Username already exists!');
@@ -26,7 +27,7 @@ async function register() {
 
     const newUser = new User(username, email, password);
     users.push(newUser.toJSON());
-    await saveUsers(users);
+    await SaveUsers(users);
 
     console.log('Registration successful!');
 }
@@ -35,7 +36,7 @@ async function login() {
     const username = await askQuestion('Enter username: ');
     const password = await askQuestion('Enter password: ');
 
-    const users = await loadUsers();
+    const users = await LoadUsers();
     const user = users.find((u) => u.username === username && u.password === password);
 
     if (!user) {
