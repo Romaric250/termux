@@ -1,6 +1,7 @@
 import { error } from "console"
 import fs from "fs/promises"
 import path from "path"
+import { User } from "../models/user"
 
 const USER_FILE = path.resolve('data', 'users.json')
 
@@ -27,11 +28,11 @@ export async function LoadUsers(): Promise<any>{
 
 }
 
-export async function SaveUsers(users:any[]): Promise<void>{
+export async function SaveUsers(users:User): Promise<void>{
 
     try {
 
-        await fs.writeFile(USER_FILE,JSON.stringify(users), null)
+        await fs.writeFile(USER_FILE,JSON.stringify({users}), null)
         
     } catch (error) {
         console.error(error)
@@ -42,35 +43,35 @@ export async function SaveUsers(users:any[]): Promise<void>{
 }
 
 
-export async function DeleteUser(userId:string): Promise<void>{
-    try {
+// export async function DeleteUser(userId:string): Promise<void>{
+//     try {
 
-        if (!userId || userId.length !>= 12 ){
+//         if (!userId || userId.length !>= 12 ){
 
-            throw error("No user id or invalide userID")
-        }
+//             throw error("No user id or invalide userID")
+//         }
     
-        let users = await fs.readFile('users-file.json','utf-8');
+//         let users = await fs.readFile('users-file.json','utf-8');
         
-        users = JSON.parse(users) || []
-        const userdata = [...users]
+//         users = JSON.parse(users) || []
+//         const userdata = [...users]
 
-        if (users.length === 0){
-            throw error('no user available')
-        }
+//         if (users.length === 0){
+//             throw error('no user available')
+//         }
 
-        let isuserpresent = userdata.find((usr)=> usr == userId)
+//         let isuserpresent = userdata.find((usr)=> usr == userId)
 
-        if (isuserpresent === undefined){
-            throw error('sorry user not found in storage')
-        }
+//         if (isuserpresent === undefined){
+//             throw error('sorry user not found in storage')
+//         }
 
-        const removeUser = userdata.filter((user) => user != userId)
+//         const removeUser = userdata.filter((user) => user != userId)
 
-        await SaveUsers(removeUser)        
-    } catch (error:any) {
+//         await SaveUsers(removeUser)        
+//     } catch (error:any) {
 
-        console.log(error.message)
-    }
+//         console.log(error.message)
+//     }
 
-}
+// }

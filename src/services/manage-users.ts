@@ -11,6 +11,7 @@ export async function register() {
 
     let users = await LoadUsers();
 
+
     // if (users.some((u) => u.username === username)) {
     //     console.log('Username already exists! Please try another.');
     //     return;
@@ -20,7 +21,15 @@ export async function register() {
 
     console.log("new user", users)
 
+    // let updatedData = users['users']['users']
 
+    // updatedData = [45,45,...updatedData['users']]
+
+    
+    // console.log("user here", updatedData)
+
+
+    await SaveUsers(newUser)
 
     console.log('Registration successful! You can now log in.');
 }

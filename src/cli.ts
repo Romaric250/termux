@@ -3,7 +3,7 @@ import { startGame } from './core/engine';
 import inquirer from 'inquirer';
 
 async function main() {
-    console.log('Welcome to Terminal Dimension Explorer!');
+    console.log('Welcome to Termux');
     const { action } = await inquirer.prompt([
         {
             type: 'list',
@@ -15,7 +15,7 @@ async function main() {
 
     if (action === 'Register') {
         await register();
-        
+
     } else if (action === 'Login') {
         const user = await login();
         if (user) {
