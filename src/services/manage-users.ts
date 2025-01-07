@@ -18,13 +18,9 @@ export async function register() {
 
     const newUser = new User(username, email, password);
 
-    console.log("new user", newUser)
+    console.log("new user", users)
 
-    
-    const newdata = [...users, newUser]
 
-    console.log(newdata)
-    await SaveUsers(newdata);
 
     console.log('Registration successful! You can now log in.');
 }

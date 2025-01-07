@@ -14,7 +14,7 @@ export async function LoadUsers(): Promise<any>{
     } catch (error:any) {
 
         if (error.code === 'ENOENT'){
-            // await fs.writeFile(USER_FILE, JSON.stringify({users:[]}))
+            await fs.writeFile(USER_FILE, JSON.stringify({users:[]}))
             console.log('users in')
             return []
         }
@@ -31,7 +31,7 @@ export async function SaveUsers(users:any[]): Promise<void>{
 
     try {
 
-        await fs.writeFile(USER_FILE,JSON.stringify({users}), null)
+        await fs.writeFile(USER_FILE,JSON.stringify(users), null)
         
     } catch (error) {
         console.error(error)
