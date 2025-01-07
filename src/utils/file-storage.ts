@@ -1,3 +1,4 @@
+import { error } from "console"
 import fs from "fs/promises"
 import path from "path"
 
@@ -38,3 +39,36 @@ export async function SaveUsers(users:any[]): Promise<void>{
 
 }
 
+
+export async function DeleteUser(userId:string): Promise<void>{
+    try {
+
+        if (!userId || userId.length !>= 12 ){
+
+            throw error("No user id or invalide userID")
+        }
+    
+        let users = await fs.readFile('users-file.json','utf-8');
+        
+        users = JSON.parse(users) || []
+        const userdata = [...users]
+
+        if (users.length === 0){
+            throw error('no user available')
+        }
+
+        let isuserpresent = userdata.find((usr)=> usr == userId)
+
+        if (isuserpresent === undefined){
+            throw error('sorry user not found in storage')
+        }
+
+        const removeUser = userdata.filter((user) => user != userId)
+
+        await SaveUsers(removeUser)        
+    } catch (error:any) {
+
+        console.log(error.message)
+    }
+
+}

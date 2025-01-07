@@ -1,74 +1,40 @@
+import { LoadUsers, SaveUsers } from '../utils/file-storage';
 import { User } from '../models/user';
-import { LoadUsers, SaveUsers} from '../utils/file-storage';
+import inquirer from 'inquirer';
 
-
-import readline from 'readline';
-
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-});
-
-function askQuestion(question: string): Promise<string> {
-    return new Promise((resolve) => rl.question(question, resolve));
-}
-
-async function register() {
-    const username = await askQuestion('Enter username: ');
-    const email = await askQuestion('Enter email: ');
-    const password = await askQuestion('Enter password: ');
+export async function register() {
+    const { username, email, password } = await inquirer.prompt([
+        { type: 'input', name: 'username', message: 'Enter your username:' },
+        { type: 'input', name: 'email', message: 'Enter your email:' },
+        { type: 'password', name: 'password', message: 'Enter your password:' },
+    ]);
 
     const users = await LoadUsers();
-
-    if (users.find((u) => u.username === username)) {
-        console.log('Username already exists!');
+    if (users.some((u) => u.username === username)) {
+        console.log('Username already exists! Please try another.');
         return;
     }
 
     const newUser = new User(username, email, password);
-    users.push(newUser.toJSON());
+    users.push(newUser);
     await SaveUsers(users);
 
-    console.log('Registration successful!');
+    console.log('Registration successful! You can now log in.');
 }
 
-async function login() {
-    const username = await askQuestion('Enter username: ');
-    const password = await askQuestion('Enter password: ');
+export async function login() {
+    const { username, password } = await inquirer.prompt([
+        { type: 'input', name: 'username', message: 'Enter your username:' },
+        { type: 'password', name: 'password', message: 'Enter your password:' },
+    ]);
 
     const users = await LoadUsers();
     const user = users.find((u) => u.username === username && u.password === password);
 
     if (!user) {
-        console.log('Invalid credentials!');
-        return;
+        console.log('Invalid username or password. Please try again.');
+        return null;
     }
 
-    console.log(`Welcome back, ${username}!`);
     return user;
 }
-
-async function mainMenu() {
-    console.log('1. Register');
-    console.log('2. Login');
-    console.log('3. Exit');
-
-    const choice = await askQuestion('Choose an option: ');
-
-    if (choice === '1') {
-        await register();
-    } else if (choice === '2') {
-        const user = await login();
-        if (user) {
-            console.log('Start your adventure!');
-            // Launch the game
-        }
-    } else {
-        console.log('Goodbye!');
-        rl.close();
-    }
-
-    await mainMenu(); // Loop back to the menu
-}
-
-mainMenu();
