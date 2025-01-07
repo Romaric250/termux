@@ -1,21 +1,29 @@
-import { Level } from "../models/level";
+import inquirer from 'inquirer';
 
-export class GameEngine{
-    private levels:Level[] = []
-    private currentlevelindex = 0
-    constructor(levels:Level[]){
-        this.levels = levels
+export async function startGame(user?: { username: string }) {
+    console.log(`Hello ${user ? user.username : 'Adventurer'}, let's start the game!`);
+
+    let playing = true;
+
+    while (playing) {
+        const { action } = await inquirer.prompt([
+            {
+                type: 'list',
+                name: 'action',
+                message: 'Choose your next move:',
+                choices: ['Solve Puzzle', 'View Stats', 'Exit'],
+            },
+        ]);
+
+        if (action === 'Solve Puzzle') {
+            console.log('Puzzle-solving logic goes here...');
+            
+        } else if (action === 'View Stats') {
+            console.log('Display player stats (e.g., levels completed, achievements).');
+            
+        } else if (action === 'Exit') {
+            console.log('Thanks for playing!');
+            playing = false;
+        }
     }
-
-    public startGame(): void {
-        console.log("welcome to terminal dimenstion explorer");
-        this.playlevel()
-        
-    }
-
-    public playlevel():void {
-        const currentlevel = this.levels[this.currentlevelindex]
-        currentlevel.start()
-    }
-
 }
