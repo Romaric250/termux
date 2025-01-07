@@ -9,15 +9,22 @@ export async function register() {
         { type: 'password', name: 'password', message: 'Enter your password:' },
     ]);
 
-    const users = await LoadUsers();
-    if (users.some((u) => u.username === username)) {
-        console.log('Username already exists! Please try another.');
-        return;
-    }
+    let users = await LoadUsers();
+
+    // if (users.some((u) => u.username === username)) {
+    //     console.log('Username already exists! Please try another.');
+    //     return;
+    // }
 
     const newUser = new User(username, email, password);
-    users.push(newUser);
-    await SaveUsers(users);
+
+    console.log("new user", newUser)
+
+    
+    const newdata = [...users, newUser]
+
+    console.log(newdata)
+    await SaveUsers(newdata);
 
     console.log('Registration successful! You can now log in.');
 }
@@ -29,6 +36,8 @@ export async function login() {
     ]);
 
     const users = await LoadUsers();
+
+    console.log('users', users)
     const user = users.find((u) => u.username === username && u.password === password);
 
     if (!user) {

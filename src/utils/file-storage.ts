@@ -7,17 +7,19 @@ const USER_FILE = path.resolve('data', 'users.json')
 export async function LoadUsers(): Promise<any>{
 
     try {
-        const data = await fs.readFile('users.json', 'utf-8')
+        const data = await fs.readFile(USER_FILE, 'utf-8')
+        console.log("data here", data)
         return JSON.parse(data) || []
         
     } catch (error:any) {
 
         if (error.code === 'ENOENT'){
-            await fs.writeFile(USER_FILE, JSON.stringify({users:[]}))
+            // await fs.writeFile(USER_FILE, JSON.stringify({users:[]}))
+            console.log('users in')
             return []
         }
 
-        console.log(error.message);
+        console.log("error: ",error.message);
         throw error 
         
     }
