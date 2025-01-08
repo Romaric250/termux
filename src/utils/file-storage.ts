@@ -6,7 +6,6 @@ import { User } from "../models/user"
 const USER_FILE = path.resolve('data', 'users.json')
 
 export async function LoadUsers(): Promise<any>{
-
     try {
         const data = await fs.readFile(USER_FILE, 'utf-8')
         console.log("data here", data)
@@ -28,11 +27,11 @@ export async function LoadUsers(): Promise<any>{
 
 }
 
-export async function SaveUsers(users:User): Promise<void>{
+export async function SaveUsers(users:any): Promise<void>{
 
     try {
 
-        await fs.writeFile(USER_FILE,JSON.stringify({users}), null)
+        await fs.writeFile(USER_FILE,JSON.stringify({"users":[...users]}), null)
         
     } catch (error) {
         console.error(error)

@@ -17,19 +17,18 @@ export async function register() {
     //     return;
     // }
 
+    
+
     const newUser = new User(username, email, password);
 
-    console.log("new user", users)
-
-    // let updatedData = users['users']['users']
-
-    // updatedData = [45,45,...updatedData['users']]
-
+    const userdata = users['users']
+    users = [...userdata,newUser]
     
+    console.log("new updates", users)
     // console.log("user here", updatedData)
 
 
-    await SaveUsers(newUser)
+    await SaveUsers(users)
 
     console.log('Registration successful! You can now log in.');
 }
