@@ -1,4 +1,4 @@
-import { error } from "console"
+import { error, log } from "console"
 import fs from "fs/promises"
 import path from "path"
 import { User } from "../models/user"
@@ -51,16 +51,20 @@ export async function DeleteUser(email:string): Promise<void>{
         // }
     
        const users = await LoadUsers()
-        const userdata = users['users']
+        const userdata:[] = users['users']
         console.log("users laoded", userdata)
 
         if (users.length === 0){
             throw error('no user available') 
         }
 
-        let isuserpresent = userdata.find((usr)=> usr == email)
+       
+       const currentuser =  userdata.find((user:any) => user.email === email)
 
-        if (isuserpresent === undefined){
+       console.log("currentuser", currentuser);
+       
+
+        if (currentuser === undefined){
             throw error('sorry user not found in storage')
         }
 
@@ -69,7 +73,7 @@ export async function DeleteUser(email:string): Promise<void>{
         await SaveUsers(removeUser)        
     } catch (error:any) {
 
-        console.log(error.message)
+        console.log("error:",error.message)
     }
 
 }
