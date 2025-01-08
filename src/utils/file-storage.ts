@@ -89,7 +89,7 @@ export async function UpdateUser(email:string, data:User){
             throw error("No user found in storage")
         }
 
-        const userData:[] = users['users']
+        const userData:[{}] = users['users']
 
         const currentUser = userData.find((user:any) => user.email === email)
 
@@ -101,7 +101,23 @@ export async function UpdateUser(email:string, data:User){
 
         console.log('current user index here', userIndex)
 
-        const 
+     userData[userIndex] = {
+         ...data,
+        email:data.email,
+        username:data.username,
+     }
+
+  await SaveUsers(userData)
+
+  console.log("User updated successfully")
+
+
+
+
+
+        
+
+
 
 
 

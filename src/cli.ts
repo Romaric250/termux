@@ -1,7 +1,7 @@
 import { register,login } from './services/manage-users';
 import { startGame } from './core/engine';
 import inquirer from 'inquirer';
-import { DeleteUser } from './utils/file-storage';
+import { DeleteUser, UpdateUser } from './utils/file-storage';
 
 async function main() {
     console.log('Welcome to Termux');
@@ -47,7 +47,8 @@ await register();
         console.log('Starting the game as a guest...');
         await startGame(); 
     } else if (action === 'delete-user'){
-        await DeleteUser("romaric")
+        // await DeleteUser("romaric")
+        // await UpdateUser("romaric", {"username":"dg","email":"fgdfg","password":"ddfg","progress":{"level":1,"score":0})
     }
 
 
