@@ -1,6 +1,7 @@
 import { register,login } from './services/manage-users';
 import { startGame } from './core/engine';
 import inquirer from 'inquirer';
+import { DeleteUser } from './utils/file-storage';
 
 async function main() {
     console.log('Welcome to Termux');
@@ -9,7 +10,7 @@ async function main() {
             type: 'list',
             name: 'action',
             message: 'What would you like to do?',
-            choices: ['Register', 'Login', 'Play as Guest', 'Exit'],
+            choices: ['Register', 'Login', 'Play as Guest', 'Exit', 'delete-user'],
         },
     ]);
 
@@ -45,7 +46,15 @@ await register();
     } else if (action === 'Play as Guest') {
         console.log('Starting the game as a guest...');
         await startGame(); 
-    } else {
+    } else if (action === 'delete-user'){
+        await DeleteUser("romaric")
+    }
+
+
+    
+    
+    
+    else {
         console.log('Goodbye!');
         process.exit(0);
     }
