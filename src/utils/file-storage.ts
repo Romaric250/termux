@@ -2,6 +2,7 @@ import { error, log } from "console"
 import fs from "fs/promises"
 import path from "path"
 import { User } from "../models/user"
+import { errorMonitor } from "stream"
 
 const USER_FILE = path.resolve('data', 'users.json')
 
@@ -82,6 +83,33 @@ export async function DeleteUser(email:string): Promise<void>{
 
 export async function UpdateUser(email:string, data:User){
     try {
+        const users = await LoadUsers()
+
+        if(users.length === 0){
+            throw error("No user found in storage")
+        }
+
+        const userData:[] = users['users']
+
+        const currentUser = userData.find((user:any) => user.email === email)
+
+        if(!currentUser){
+            throw error(`No user with email ${email} found in storage`)
+        }
+
+        const userIndex = userData.findIndex((user:any) => user.email === email)
+
+        console.log('current user index here', userIndex)
+
+        const 
+
+
+
+
+
+
+
+
         
     } catch (error:any) {
         console.log(error.message);
