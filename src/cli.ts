@@ -14,7 +14,27 @@ async function main() {
     ]);
 
     if (action === 'Register') {
-        await register();
+
+        const {register_options} = await inquirer.prompt([{
+            
+                type:'list',
+                name:'register_options',
+                message:'What would you like to use',
+                choices:['File-storage', 'Database storage'],
+            
+        }])
+
+
+        if (register_options === 'File-storage'){
+await register();
+        }else{
+            
+            console.log('Coming soon....')
+            process.exit(0)
+        }
+
+
+
 
     } else if (action === 'Login') {
         const user = await login();
