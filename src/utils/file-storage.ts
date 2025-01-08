@@ -68,12 +68,25 @@ export async function DeleteUser(email:string): Promise<void>{
             throw error('sorry user not found in storage')
         }
 
-        const removeUser = userdata.filter((user) => user != email)
+       const removeUser = userdata.filter((user:any) => user.email != email)
 
+       console.log("removed user", removeUser)
         await SaveUsers(removeUser)        
     } catch (error:any) {
 
         console.log("error:",error.message)
     }
 
+}
+
+
+export async function UpdateUser(email:string, data:User){
+    try {
+        
+    } catch (error:any) {
+        console.log(error.message);
+        throw error(error)
+        
+        
+    }
 }
