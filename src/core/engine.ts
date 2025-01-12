@@ -18,6 +18,7 @@ export async function startGame(user?: { username: string }) {
         if (action === 'Solve Puzzle') {
             console.log('Puzzle-solving logic goes here...');
             
+            
         } else if (action === 'View Stats') {
             console.log('Display player stats (e.g., levels completed, achievements).');
             
