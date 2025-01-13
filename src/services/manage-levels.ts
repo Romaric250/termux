@@ -117,16 +117,38 @@ export async function FilterLevelsbyCategory(category:string){
 }
 
 
-export async function ParseLeveltoUser(levelData:any): Promise<void>{
+export async function ParseLeveltoUser(levelData:any, user:any): Promise<void>{
 
     try {
-        const {levels}= await inquirer.prompt([
+        const {levelsChoice}= await inquirer.prompt([
                { type:'list',
-                name:'levels',
+                name:'levelsChoice',
                 message:'What would you like to use',
-                choices:[...levelData.map((level:any) =>level.name)],}
+                choices:[...levelData.map((level:any) =>level.name)],} 
         
-            ])        
+            ])   
+            
+
+    const currentLevel:levelType = levelData.find((level:any) => level.name === levelsChoice)
+
+
+    const {response} = await inquirer.prompt([{
+        type:"editor",
+        name:"response",
+        message:`${currentLevel.description}: `
+    }])
+
+    if(response === currentLevel.solution){
+        console.log("wow you got it.");
+        
+    }
+
+    console.log(currentLevel)
+
+    
+
+
+
     } catch (error:any) {
         
 

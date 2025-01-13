@@ -34,7 +34,7 @@ export async function StartPlayingGame(user?:user){
         getCatdata.map((level:any) => {
             
         })
-        console.log("data in bd", getCatdata);
+        // console.log("data in bd", getCatdata);
     }
     if (gameOptions === levelCategory[1]){
         const getCatdata = await FilterLevelsbyCategory(levelCategory[1])
@@ -43,8 +43,8 @@ export async function StartPlayingGame(user?:user){
         //     console.log("level data it",level.task,level.name);
         // })
 
-        await ParseLeveltoUser(getCatdata)
-        console.log('data ', getCatdata);
+        await ParseLeveltoUser(getCatdata, user)
+        // console.log('data ', getCatdata);
     }
     if (gameOptions === levelCategory[2]){
 
