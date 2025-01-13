@@ -4,6 +4,7 @@ import { levelCategory, levelType } from "../index-types";
 import { Level } from "../models/level";
 import fs from 'fs/promises'
 import { main } from "../cli";
+
  
 export async function CreateLevel(){
 
@@ -116,25 +117,19 @@ export async function FilterLevelsbyCategory(category:string){
 }
 
 
-
 export async function ParseLeveltoUser(levelData:any): Promise<void>{
 
     try {
-
-       
-
         const {levels}= await inquirer.prompt([
                { type:'list',
                 name:'levels',
                 message:'What would you like to use',
                 choices:[...levelData.map((level:any) =>level.name)],}
         
-            ])
-
-        
+            ])        
     } catch (error:any) {
         
-        
+
     }
 
 }

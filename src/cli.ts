@@ -5,8 +5,6 @@ import { DeleteUser } from './utils/file-storage';
 import { user } from './index-types';
 import { CreateLevel } from './services/manage-levels';
 import { StartPlayingGame } from '../index-fxns';
-
-
 export async function main() {
     console.log('Welcome to Termux');
     const { action } = await inquirer.prompt([
@@ -55,18 +53,13 @@ main()
         await DeleteUser()
         main()
 
-    }else if (action === 'update-user'){
+    }
+    else if (action === 'update-user'){
         await UpdateUser()
         main()
 
     }
 
-    
-
-
-    
-    
-    
     else {
         console.log('Goodbye!');
         process.exit(0);
