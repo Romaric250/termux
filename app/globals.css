@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-git-dark text-white;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-gradient-to-r from-git-blue via-git-purple to-git-orange bg-clip-text text-transparent;
+  }
+  
+  .terminal-bg {
+    background: linear-gradient(135deg, #0d1117 0%, #21262d 100%);
+  }
+  
+  .glass-effect {
+    @apply backdrop-blur-md bg-white/10 border border-white/20;
+  }
+  
+  .neon-glow {
+    box-shadow: 0 0 20px rgba(88, 166, 255, 0.3);
+  }
+  
+  .typewriter {
+    overflow: hidden;
+    border-right: 2px solid #58a6ff;
+    white-space: nowrap;
+    animation: typewriter 3s steps(40) 1s forwards, cursor 1s infinite;
+  }
+  
+  .floating {
+    animation: floating 3s ease-in-out infinite;
+  }
+  
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite alternate;
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .text-glow {
+    text-shadow: 0 0 10px currentColor;
+  }
+}
+
+@keyframes floating {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  from { box-shadow: 0 0 20px rgba(88, 166, 255, 0.3); }
+  to { box-shadow: 0 0 30px rgba(88, 166, 255, 0.6); }
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes cursor {
+  0%, 100% { border-color: transparent; }
+  50% { border-color: #58a6ff; }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-git-gray;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-git-blue rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-git-purple;
+}
+
+/* Selection color */
+::selection {
+  @apply bg-git-blue text-white;
+}
+
+/* Focus styles */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-git-blue focus:ring-offset-2 focus:ring-offset-git-dark;
+} 

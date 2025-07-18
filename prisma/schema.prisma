@@ -1,0 +1,143 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  email     String   @unique
+  password  String
+  avatar    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Progress tracking
+  progress UserProgress?
+
+  // Achievements
+  achievements UserAchievement[]
+
+  // Daily challenges
+  dailyChallenges DailyChallenge[]
+
+  // Challenge attempts
+  attempts ChallengeAttempt[]
+
+  @@map("users")
+}
+
+model UserProgress {
+  id        String @id @default(cuid())
+  userId    String @unique
+  user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Category progress
+  beginnerCompleted    Int @default(0)
+  beginnerTotalScore   Int @default(0)
+  beginnerBestTime     Int?
+
+  intermediateCompleted    Int @default(0)
+  intermediateTotalScore   Int @default(0)
+  intermediateBestTime     Int?
+
+  advancedCompleted    Int @default(0)
+  advancedTotalScore   Int @default(0)
+  advancedBestTime     Int?
+
+  // Overall stats
+  grandTotalScore      Int @default(0)
+  totalLevelsCompleted Int @default(0)
+  totalPlayTime        Int @default(0) // in minutes
+
+  // Daily challenge stats
+  dailyStreak          Int @default(0)
+  lastDailyCompleted   DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("user_progress")
+}
+
+model Challenge {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  category    ChallengeCategory
+  task        String
+  solution    String
+  hints       String[] // Array of hints
+  explanation String
+  points      Int      @default(10)
+  timeLimit   Int?     // in seconds
+  difficulty  Int      @default(1)
+  tags        String[] // Array of tags
+  isDaily     Boolean  @default(false)
+  dailyDate   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  attempts ChallengeAttempt[]
+
+  @@map("challenges")
+}
+
+model ChallengeAttempt {
+  id          String   @id @default(cuid())
+  userId      String
+  challengeId String
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  challenge   Challenge   @relation(fields: [challengeId], references: [id], onDelete: Cascade)
+  
+  // Attempt details
+  userAnswer  String
+  isCorrect   Boolean
+  timeSpent   Int?     // in seconds
+  score       Int?
+  hintsUsed   Int      @default(0)
+  
+  createdAt   DateTime @default(now())
+
+  @@unique([userId, challengeId])
+  @@map("challenge_attempts")
+}
+
+model UserAchievement {
+  id           String   @id @default(cuid())
+  userId       String
+  achievement  String   // Achievement ID
+  unlockedAt   DateTime @default(now())
+  
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, achievement])
+  @@map("user_achievements")
+}
+
+model DailyChallenge {
+  id          String   @id @default(cuid())
+  userId      String
+  challengeId String
+  completedAt DateTime @default(now())
+  score       Int
+  
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, challengeId])
+  @@map("daily_challenges")
+}
+
+enum ChallengeCategory {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+} 
