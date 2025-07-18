@@ -91,4 +91,36 @@ export async function login() {
     return user;
 }
 
+export async function UpdateUserProgress(username: string, category: string, levelsCompleted: number, score: number) {
+    try {
+        const userData = await LoadUsers();
+        const users = userData['users'];
+        
+        const userIndex = users.findIndex((u: any) => u.username === username);
+        
+        if (userIndex === -1) {
+            console.log('User not found');
+            return false;
+        }
+        
+        // Update the specific category progress
+        users[userIndex].progress[category].levelsCompleted += levelsCompleted;
+        users[userIndex].progress[category].totalScore += score;
+        
+        // Update grand total
+        const grandTotal = Object.values(users[userIndex].progress)
+            .filter((p: any) => typeof p === 'object' && p.totalScore)
+            .reduce((sum: number, p: any) => sum + p.totalScore, 0);
+        
+        users[userIndex].progress.grandTotalScore = grandTotal;
+        
+        await SaveUsers(users);
+        return true;
+        
+    } catch (error: any) {
+        console.error('Error updating user progress:', error);
+        return false;
+    }
+}
+
 

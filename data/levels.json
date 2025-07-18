@@ -1,1 +1,144 @@
-{"levels":[{"name":"level 1","description":"change the access property of the example.tsx file to be an executable..","category":"intermediate","task":"intermediate","solution":"chmod example.tsx"},{"name":"level 2","description":"","category":"intermediate","task":"","solution":""},{"name":"level 3","description":"","category":"intermediate","task":"","solution":""},{"name":"level 4","description":"ereri","category":"intermediate","task":"df","solution":"dfdi"},{"name":"level 5","description":"","category":"","task":"","solution":""}]}
+{
+  "levels": [
+    {
+      "name": "Git Init Master",
+      "description": "Initialize a new Git repository in the current directory",
+      "category": "beginner",
+      "task": "Use git init to create a new repository",
+      "solution": "git init"
+    },
+    {
+      "name": "Stage Everything",
+      "description": "Stage all files in the current directory for commit",
+      "category": "beginner",
+      "task": "Use git add to stage all files",
+      "solution": "git add ."
+    },
+    {
+      "name": "First Commit",
+      "description": "Create your first commit with the message 'Initial commit'",
+      "category": "beginner",
+      "task": "Use git commit with a message",
+      "solution": "git commit -m \"Initial commit\""
+    },
+    {
+      "name": "Check Status",
+      "description": "Check the current status of your repository",
+      "category": "beginner",
+      "task": "Use git status to see repository state",
+      "solution": "git status"
+    },
+    {
+      "name": "View History",
+      "description": "View the commit history of your repository",
+      "category": "beginner",
+      "task": "Use git log to see commit history",
+      "solution": "git log"
+    },
+    {
+      "name": "Create Branch",
+      "description": "Create a new branch called 'feature'",
+      "category": "intermediate",
+      "task": "Use git branch to create a new branch",
+      "solution": "git branch feature"
+    },
+    {
+      "name": "Switch Branch",
+      "description": "Switch to the 'feature' branch",
+      "category": "intermediate",
+      "task": "Use git checkout to switch branches",
+      "solution": "git checkout feature"
+    },
+    {
+      "name": "Merge Branches",
+      "description": "Merge the 'feature' branch into the current branch",
+      "category": "intermediate",
+      "task": "Use git merge to combine branches",
+      "solution": "git merge feature"
+    },
+    {
+      "name": "Delete Branch",
+      "description": "Delete the 'feature' branch after merging",
+      "category": "intermediate",
+      "task": "Use git branch -d to delete a branch",
+      "solution": "git branch -d feature"
+    },
+    {
+      "name": "Remote Add",
+      "description": "Add a remote repository called 'origin' with URL 'https://github.com/user/repo.git'",
+      "category": "intermediate",
+      "task": "Use git remote add to connect to a remote repository",
+      "solution": "git remote add origin https://github.com/user/repo.git"
+    },
+    {
+      "name": "Push to Remote",
+      "description": "Push your commits to the remote repository",
+      "category": "intermediate",
+      "task": "Use git push to upload commits to remote",
+      "solution": "git push origin main"
+    },
+    {
+      "name": "Pull Changes",
+      "description": "Pull the latest changes from the remote repository",
+      "category": "intermediate",
+      "task": "Use git pull to download remote changes",
+      "solution": "git pull origin main"
+    },
+    {
+      "name": "Stash Changes",
+      "description": "Temporarily save your uncommitted changes",
+      "category": "advanced",
+      "task": "Use git stash to save work in progress",
+      "solution": "git stash"
+    },
+    {
+      "name": "Apply Stash",
+      "description": "Apply the most recent stashed changes",
+      "category": "advanced",
+      "task": "Use git stash pop to restore stashed changes",
+      "solution": "git stash pop"
+    },
+    {
+      "name": "Reset Hard",
+      "description": "Reset your working directory to match the last commit (WARNING: destroys uncommitted changes)",
+      "category": "advanced",
+      "task": "Use git reset --hard to discard all changes",
+      "solution": "git reset --hard HEAD"
+    },
+    {
+      "name": "Rebase Interactive",
+      "description": "Start an interactive rebase of the last 3 commits",
+      "category": "advanced",
+      "task": "Use git rebase -i to rewrite commit history",
+      "solution": "git rebase -i HEAD~3"
+    },
+    {
+      "name": "Cherry Pick",
+      "description": "Apply a specific commit from another branch",
+      "category": "advanced",
+      "task": "Use git cherry-pick to apply a specific commit",
+      "solution": "git cherry-pick abc123"
+    },
+    {
+      "name": "Submodule Add",
+      "description": "Add a Git submodule to your repository",
+      "category": "advanced",
+      "task": "Use git submodule add to include another repository",
+      "solution": "git submodule add https://github.com/user/submodule.git"
+    },
+    {
+      "name": "Blame File",
+      "description": "Show who modified each line of a file",
+      "category": "advanced",
+      "task": "Use git blame to see line-by-line history",
+      "solution": "git blame filename.txt"
+    },
+    {
+      "name": "Bisect Start",
+      "description": "Start a binary search to find which commit introduced a bug",
+      "category": "advanced",
+      "task": "Use git bisect to find problematic commits",
+      "solution": "git bisect start"
+    }
+  ]
+}
