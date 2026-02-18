@@ -30,8 +30,17 @@ export default function AuthModal() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    const provider = input.trim().toLowerCase()
-    if (VALID_PROVIDERS.includes(provider)) {
+    const trimmed = input.trim().toLowerCase()
+    const isLogin = mode === 'login'
+    const expectedCmd = isLogin ? 'login' : 'create-account'
+
+    if (!trimmed.startsWith(expectedCmd)) {
+      setError(`Unknown command. Try: ${expectedCmd} --provider <github|google>`)
+      return
+    }
+    const match = trimmed.match(/--provider\s+(\w+)/)
+    const provider = match?.[1]
+    if (provider && VALID_PROVIDERS.includes(provider)) {
       setError(null)
       setSelectedProvider(provider)
       setIsConnecting(true)
@@ -40,14 +49,17 @@ export default function AuthModal() {
         setSelectedProvider(null)
       }, 2500)
     } else {
-      setError(`Unknown provider '${input.trim() || '(empty)'}'. Available: github | google`)
+      setError(`Invalid or missing provider. Use: ${expectedCmd} --provider <github|google>`)
     }
   }
 
   if (!isOpen || !mode) return null
 
   const isLogin = mode === 'login'
-  const prompt = isLogin ? '[root@termux ~]# login --provider' : '[guest@termux ~]# create-account --provider'
+  const shellPrompt = isLogin ? '[root@termux ~]# ' : '[guest@termux ~]# '
+  const hintCmd = isLogin
+    ? 'login --provider github | login --provider google'
+    : 'create-account --provider github | create-account --provider google'
   const title = isLogin ? 'SESSION: LOGIN_MODULE' : 'SESSION: CREATE_ACCOUNT_MODULE'
   const message = isLogin
     ? 'System ready. Establish secure handshake to access the core Git learning modules.'
@@ -84,7 +96,7 @@ export default function AuthModal() {
           {!selectedProvider ? (
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="flex items-center gap-1 font-mono text-sm">
-                <span className="text-git-green">{prompt}</span>
+                <span className="text-git-green">{shellPrompt}</span>
                 <input
                   ref={inputRef}
                   type="text"
@@ -103,12 +115,12 @@ export default function AuthModal() {
               {error && (
                 <p className="font-mono text-xs text-red-400">{error}</p>
               )}
-              <p className="font-mono text-xs text-gray-500">Available: github | google (press Enter)</p>
+              <p className="font-mono text-xs text-gray-500">e.g. {hintCmd}</p>
             </form>
           ) : (
             <div className="space-y-4">
               <div className="font-mono text-sm text-git-green">
-                {prompt} {selectedProvider}
+                {shellPrompt}{input.trim() || `${isLogin ? 'login' : 'create-account'} --provider ${selectedProvider}`}
               </div>
               <div className="space-y-3 pt-2 border-t border-white/10">
               <div className="font-mono text-xs text-git-green flex items-center justify-between">
