@@ -1,0 +1,7 @@
+export { default as Header } from './Header'
+export { default as HeroSection } from './HeroSection'
+export { default as AnimatedTerminal } from './AnimatedTerminal'
+export { default as GitIsHardSection } from './GitIsHardSection'
+export { default as ComparisonTable } from './ComparisonTable'
+export { default as CTABlock } from './CTABlock'
+export { default as Footer } from './Footer'
