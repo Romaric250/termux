@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { IBM_Plex_Mono } from 'next/font/google'
 import './globals.css'
+import Providers from '@/components/Providers'
 
 const ibmPlexMono = IBM_Plex_Mono({ 
   weight: ['300', '400', '500', '600', '700'],
@@ -39,7 +40,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className={`${ibmPlexMono.className} antialiased`}>
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   )

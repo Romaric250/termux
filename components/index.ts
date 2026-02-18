@@ -1,4 +1,7 @@
 export { default as Header } from './Header'
+export { default as AuthNav } from './AuthNav'
+export { default as AuthModule } from './AuthModule'
+export { default as AuthModal } from './AuthModal'
 export { default as HeroSection } from './HeroSection'
 export { default as AnimatedTerminal } from './AnimatedTerminal'
 export { default as GitIsHardSection } from './GitIsHardSection'

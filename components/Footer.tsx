@@ -2,8 +2,10 @@
 
 import { Github, Twitter, Mail } from 'lucide-react'
 import Link from 'next/link'
+import { useAuthModal } from '@/contexts/AuthModalContext'
 
 export default function Footer() {
+  const { openLogin } = useAuthModal()
   return (
     <footer className="relative z-10 py-16 px-6 border-t border-white/10">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between gap-12">
@@ -43,7 +45,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-gray-400">
               <li><Link href="/docs" className="hover:text-white transition-colors">Docs</Link></li>
               <li><Link href="/community" className="hover:text-white transition-colors">Community</Link></li>
-              <li><Link href="/login" className="hover:text-white transition-colors">Login</Link></li>
+              <li><button onClick={openLogin} className="hover:text-white transition-colors text-left">Login</button></li>
             </ul>
           </div>
         </div>
