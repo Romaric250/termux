@@ -10,7 +10,7 @@
   
   body {
     @apply bg-git-dark text-white;
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Mono', monospace;
   }
 }
 

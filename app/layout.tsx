@@ -1,12 +1,15 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { IBM_Plex_Mono } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const ibmPlexMono = IBM_Plex_Mono({ 
+  weight: ['300', '400', '500', '600', '700'],
+  subsets: ['latin'] 
+})
 
 export const metadata: Metadata = {
-  title: 'Git Mastery - Master Git Through Interactive Challenges',
-  description: 'Learn Git through interactive challenges, daily exercises, and a beautiful web interface. Master version control with hands-on practice.',
+  title: 'TERMUX - Master Git or Break Production',
+  description: 'The browser-based terminal game that turns complex Git commands into muscle memory. Conquer the CLI in a high-stakes hacker environment without risking your actual repo.',
   keywords: 'git, learning, interactive, challenges, version control, web development',
   authors: [{ name: 'Git Mastery Team' }],
   viewport: 'width=device-width, initial-scale=1',
@@ -35,7 +38,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${ibmPlexMono.className} antialiased`}>
         {children}
       </body>
     </html>

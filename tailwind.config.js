@@ -9,9 +9,9 @@ module.exports = {
     extend: {
       fontFamily: {
         'serif': ['Playfair Display', 'serif'],
-        'mono': ['JetBrains Mono', 'monospace'],
-        'display': ['Cinzel', 'serif'],
-        'body': ['Inter', 'sans-serif'],
+        'mono': ['IBM Plex Mono', 'monospace'],
+        'display': ['IBM Plex Mono', 'monospace'],
+        'body': ['IBM Plex Mono', 'monospace'],
       },
       colors: {
         'git-dark': '#0d1117',
@@ -55,4 +55,4 @@ module.exports = {
     },
   },
   plugins: [],
-} g
+}

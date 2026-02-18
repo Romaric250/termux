@@ -1,266 +1,349 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useState, useEffect } from 'react'
 import { 
-  Terminal, 
-  GitBranch, 
-  Code, 
+  Play, 
   Trophy, 
-  Zap, 
-  Star,
-  ArrowRight,
-  Play,
-  Users,
-  Target,
-  Award
+  GitMerge, 
+  GitBranch, 
+  ArrowUp,
+  Github,
+  Twitter,
+  Mail,
+  ChevronRight
 } from 'lucide-react'
 import Link from 'next/link'
 
 export default function Home() {
-  const [currentText, setCurrentText] = useState(0)
-  const texts = [
-    "Master Git Commands",
-    "Solve Interactive Challenges", 
-    "Track Your Progress",
-    "Join the Community"
-  ]
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentText((prev) => (prev + 1) % texts.length)
-    }, 3000)
-    return () => clearInterval(interval)
-  }, [texts.length])
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-git-dark via-git-gray to-git-dark">
-      {/* Animated Background */}
-      <div className="fixed inset-0 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(88,166,255,0.1),transparent_50%)]" />
-        <div className="absolute top-20 left-20 w-72 h-72 bg-git-blue/20 rounded-full blur-3xl animate-pulse-slow" />
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-git-purple/20 rounded-full blur-3xl animate-pulse-slow delay-1000" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-git-orange/10 rounded-full blur-2xl animate-bounce-slow" />
-      </div>
-
-      {/* Navigation */}
-      <nav className="relative z-10 flex justify-between items-center p-6">
-        <motion.div 
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="flex items-center space-x-2"
-        >
-          <Terminal className="w-8 h-8 text-git-blue" />
-          <span className="font-display text-2xl font-bold gradient-text">Git Mastery</span>
-        </motion.div>
+    <div className="min-h-screen bg-black text-white">
+      {/* Header */}
+      <nav className="relative z-10 border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <div className="flex items-center space-x-2">
+          <div className="w-8 h-8 bg-git-green flex items-center justify-center rounded">
+            <span className="text-white font-mono text-lg">&gt;</span>
+          </div>
+          <span className="font-display font-semibold text-xl tracking-tight">TERMUX</span>
+        </div>
         
-        <motion.div 
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="flex items-center space-x-6"
-        >
-          <Link href="/challenges" className="text-gray-300 hover:text-git-blue transition-colors">
-            Challenges
+        <div className="flex items-center space-x-8">
+          <Link href="/challenges" className="text-sm font-medium hover:text-git-green transition-colors">
+            CHALLENGES
           </Link>
-          <Link href="/leaderboard" className="text-gray-300 hover:text-git-blue transition-colors">
-            Leaderboard
+          <Link href="/leaderboard" className="text-sm font-medium hover:text-git-green transition-colors">
+            LEADERBOARD
           </Link>
-          <Link href="/login" className="text-gray-300 hover:text-git-blue transition-colors">
-            Login
+          <Link href="/docs" className="text-sm font-medium hover:text-git-green transition-colors">
+            DOCS
+          </Link>
+          <Link href="/community" className="text-sm font-medium hover:text-git-green transition-colors">
+            COMMUNITY
+          </Link>
+          <Link href="/login" className="text-sm font-medium text-git-green border border-git-green px-4 py-2 rounded hover:bg-git-green/10 transition-colors">
+            LOGIN
           </Link>
           <Link 
-            href="/register" 
-            className="bg-git-blue hover:bg-git-purple text-white px-6 py-2 rounded-lg transition-all duration-300 hover:scale-105 focus-ring"
+            href="/play" 
+            className="text-sm font-medium bg-git-green text-white px-4 py-2 rounded hover:bg-git-green/90 transition-colors"
           >
-            Get Started
+            START PLAYING
           </Link>
-        </motion.div>
+        </div>
+        </div>
       </nav>
 
       {/* Hero Section */}
-      <main className="relative z-10 flex flex-col items-center justify-center min-h-[80vh] px-6 text-center">
+      <section className="relative z-10 max-w-7xl mx-auto px-6 py-20">
+        <div className="flex flex-col lg:flex-row gap-16 items-center">
+          {/* Left - Copy */}
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="flex-1"
+          >
+            <span className="inline-block bg-git-green text-white text-xs font-semibold px-3 py-1 rounded mb-6">
+              V2.0 NOW LIVE
+            </span>
+            <h1 className="font-display text-5xl md:text-6xl font-bold mb-6 leading-tight">
+              Master Git or
+              <br />
+              <span className="text-git-green">Break Production</span>
+            </h1>
+            <p className="text-lg text-gray-400 mb-8 max-w-xl leading-relaxed">
+              The browser-based terminal game that turns complex Git commands into muscle memory. Conquer the CLI in a high-stakes hacker environment without risking your actual repo.
+            </p>
+            <div className="flex gap-4 mb-8">
+              <Link 
+                href="/play"
+                className="inline-flex items-center gap-2 bg-git-green text-white px-6 py-3 rounded font-medium hover:bg-git-green/90 transition-colors"
+              >
+                <Play className="w-4 h-4" />
+                INIT SESSION
+              </Link>
+              <Link 
+                href="/leaderboard"
+                className="inline-flex items-center gap-2 border border-white text-white px-6 py-3 rounded font-medium hover:bg-white/5 transition-colors"
+              >
+                <Trophy className="w-4 h-4" />
+                LEADERBOARD
+              </Link>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="flex -space-x-2">
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <div key={i} className="w-8 h-8 rounded-full bg-git-gray border-2 border-black" />
+                ))}
+              </div>
+              <span className="text-sm text-gray-400">Developers pushing commits today</span>
+            </div>
+          </motion.div>
+
+          {/* Right - Terminal Mockup */}
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex-1 max-w-xl"
+          >
+            <div className="bg-[#1a1a1a] rounded-lg overflow-hidden border border-white/10 shadow-2xl">
+              {/* Window controls */}
+              <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10">
+                <div className="flex gap-2">
+                  <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-green-500/80" />
+                </div>
+                <span className="text-xs text-gray-400 ml-4 font-mono">git root@termux-internal</span>
+              </div>
+              {/* Terminal content */}
+              <div className="p-4 font-mono text-sm min-h-[280px]">
+                <div className="text-git-green">$ git status</div>
+                <div className="text-gray-300 mt-2">
+                  On branch <span className="text-git-green">master</span>
+                  <br />
+                  Your branch is up to date with <span className="text-git-green">origin/master</span>.
+                  <br /><br />
+                  Changes not staged for commit:
+                  <br />
+                  &nbsp;&nbsp;modified:&nbsp;&nbsp;package.json
+                </div>
+                <div className="text-git-green mt-4">$ git checkout -b fix/prod-explosion</div>
+                <div className="text-gray-300 mt-2">Switched to a new branch &apos;<span className="text-git-green">fix/prod-explosion</span>&apos;</div>
+                <div className="text-git-green mt-4">$ git merge conflict-heaven</div>
+                <div className="text-gray-300 mt-2">
+                  Auto-merging index.js
+                  <br />
+                  <span className="text-git-green font-semibold">CONFLICT</span> (content): Merge conflict in index.js
+                </div>
+                <div className="mt-4 flex items-center">
+                  <span className="text-git-green">$</span>
+                  <span className="ml-2 w-2 h-4 bg-git-green animate-pulse" />
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Git is Hard Section */}
+      <section className="relative z-10 py-20 px-6 border-t border-white/10">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="max-w-4xl mx-auto"
-        >
-          {/* Main Title */}
-          <h1 className="font-display text-6xl md:text-8xl font-bold mb-6 text-shadow">
-            <span className="gradient-text">Master</span>
-            <br />
-            <span className="text-white">Git</span>
-            <br />
-            <span className="gradient-text">Today</span>
-          </h1>
-
-          {/* Animated Subtitle */}
-          <motion.div 
-            key={currentText}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
-            className="text-2xl md:text-3xl text-gray-300 mb-8 font-mono"
-          >
-            {texts[currentText]}
-          </motion.div>
-
-          {/* CTA Buttons */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
-          >
-            <Link 
-              href="/play"
-              className="group bg-gradient-to-r from-git-blue to-git-purple hover:from-git-purple hover:to-git-orange text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300 hover:scale-105 focus-ring flex items-center space-x-2 neon-glow"
-            >
-              <Play className="w-5 h-5" />
-              <span>Start Learning</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            
-            <Link 
-              href="/demo"
-              className="group glass-effect text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300 hover:scale-105 focus-ring flex items-center space-x-2"
-            >
-              <Terminal className="w-5 h-5" />
-              <span>Try Demo</span>
-            </Link>
-          </motion.div>
-
-          {/* Stats */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto"
-          >
-            <div className="text-center">
-              <div className="text-3xl font-bold text-git-blue mb-2">500+</div>
-              <div className="text-gray-400">Challenges</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-git-purple mb-2">10K+</div>
-              <div className="text-gray-400">Learners</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-git-orange mb-2">50+</div>
-              <div className="text-gray-400">Git Commands</div>
-            </div>
-          </motion.div>
-        </motion.div>
-      </main>
-
-      {/* Features Section */}
-      <section className="relative z-10 py-20 px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
           className="max-w-6xl mx-auto"
         >
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">
-            Why Choose Git Mastery?
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-center mb-4">
+            Git is Hard. We made it a Game.
           </h2>
+          <p className="text-lg text-gray-400 text-center mb-16 max-w-2xl mx-auto">
+            Real scenarios. Real commands. Zero risk to your actual codebase.
+          </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                icon: <Target className="w-8 h-8" />,
-                title: "Interactive Learning",
-                description: "Learn by doing with hands-on Git challenges that simulate real-world scenarios."
+                icon: <GitMerge className="w-8 h-8 text-git-green" />,
+                title: 'MERGE CONFLICT HELL',
+                description: 'Navigate the dreaded three-way merge. Resolve conflicts like a pro before your PR gets blocked.',
+                level: 'LVL 12 SCENARIO',
               },
               {
-                icon: <Trophy className="w-8 h-8" />,
-                title: "Gamified Progress",
-                description: "Track your progress with achievements, leaderboards, and daily challenges."
+                icon: <GitBranch className="w-8 h-8 text-git-green" />,
+                title: 'DETACHED HEAD MYSTERY',
+                description: 'You checked out a commit. Now nothing works. Find your way back to safety.',
+                level: 'LVL 08 SCENARIO',
               },
               {
-                icon: <Code className="w-8 h-8" />,
-                title: "Real-time Feedback",
-                description: "Get instant feedback on your Git commands with detailed explanations."
+                icon: <ArrowUp className="w-8 h-8 text-git-green" />,
+                title: 'ACCIDENTAL FORCE-PUSH',
+                description: 'Oops. You overwrote main. Learn to recover and prevent it from ever happening again.',
+                level: 'LVL 15 SCENARIO',
               },
-              {
-                icon: <GitBranch className="w-8 h-8" />,
-                title: "Progressive Difficulty",
-                description: "Start with basics and advance to complex Git workflows and strategies."
-              },
-              {
-                icon: <Users className="w-8 h-8" />,
-                title: "Community Driven",
-                description: "Join a community of developers learning and mastering Git together."
-              },
-              {
-                icon: <Zap className="w-8 h-8" />,
-                title: "Daily Challenges",
-                description: "Keep your skills sharp with fresh daily challenges and streak tracking."
-              }
-            ].map((feature, index) => (
+            ].map((item, i) => (
               <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
                 viewport={{ once: true }}
-                className="glass-effect p-6 rounded-xl hover:scale-105 transition-all duration-300 group"
+                transition={{ delay: i * 0.1 }}
+                className="bg-git-gray/50 border border-white/10 rounded-lg p-6 hover:border-git-green/30 transition-colors"
               >
-                <div className="text-git-blue mb-4 group-hover:text-git-purple transition-colors">
-                  {feature.icon}
-                </div>
-                <h3 className="text-xl font-semibold mb-3 text-white">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-400 leading-relaxed">
-                  {feature.description}
-                </p>
+                <div className="mb-4">{item.icon}</div>
+                <h3 className="font-display text-lg font-bold mb-2">{item.title}</h3>
+                <p className="text-gray-400 text-sm mb-4 leading-relaxed">{item.description}</p>
+                <span className="text-xs text-gray-500">{item.level}</span>
               </motion.div>
             ))}
           </div>
         </motion.div>
       </section>
 
-      {/* CTA Section */}
+      {/* Comparison Table */}
+      <section className="relative z-10 py-20 px-6 border-t border-white/10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="max-w-4xl mx-auto"
+        >
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-center mb-2">
+            THE TERMUX WAY
+            <span className="text-gray-500 font-normal"> VS </span>
+            THE OLD WAY
+          </h2>
+
+          <div className="mt-12 overflow-hidden rounded-lg border border-white/10">
+            <table className="w-full">
+              <thead>
+                <tr>
+                  <th className="text-left py-4 px-6 bg-git-gray/50 font-display font-semibold">FEATURE</th>
+                  <th className="text-left py-4 px-6 bg-blue-900/30 font-display font-semibold">STACKOVERFLOW & DOCS</th>
+                  <th className="text-left py-4 px-6 bg-git-green/20 font-display font-semibold text-git-green">TERMUX TRAINING</th>
+                </tr>
+              </thead>
+              <tbody className="text-sm">
+                <tr className="border-t border-white/10">
+                  <td className="py-4 px-6 font-medium">Learning Method</td>
+                  <td className="py-4 px-6 text-gray-400">Copy-pasting commands you don&apos;t understand</td>
+                  <td className="py-4 px-6">Interactive CLI challenges</td>
+                </tr>
+                <tr className="border-t border-white/10">
+                  <td className="py-4 px-6 font-medium">Retention</td>
+                  <td className="py-4 px-6 text-gray-400">Forget it in a week</td>
+                  <td className="py-4 px-6">Muscle memory through repetition</td>
+                </tr>
+                <tr className="border-t border-white/10">
+                  <td className="py-4 px-6 font-medium">Failure Mode</td>
+                  <td className="py-4 px-6 text-gray-400">Break production, panic, revert</td>
+                  <td className="py-4 px-6">Fail safely in a sandbox</td>
+                </tr>
+                <tr className="border-t border-white/10">
+                  <td className="py-4 px-6 font-medium">Realism</td>
+                  <td className="py-4 px-6 text-gray-400">Theoretical examples</td>
+                  <td className="py-4 px-6">Real-world merge conflicts & scenarios</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* CTA Block */}
       <section className="relative z-10 py-20 px-6">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0, scale: 0.98 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="max-w-4xl mx-auto text-center"
+          className="max-w-5xl mx-auto"
         >
-          <h2 className="font-display text-4xl md:text-5xl font-bold mb-6 gradient-text">
-            Ready to Master Git?
-          </h2>
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Join thousands of developers who have transformed their Git skills through interactive challenges and hands-on practice.
-          </p>
-          <Link 
-            href="/register"
-            className="inline-flex items-center space-x-2 bg-gradient-to-r from-git-green to-git-blue hover:from-git-blue hover:to-git-purple text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300 hover:scale-105 focus-ring neon-glow"
-          >
-            <Star className="w-5 h-5" />
-            <span>Start Your Journey</span>
-            <ArrowRight className="w-5 h-5" />
-          </Link>
+          <div className="bg-git-green rounded-2xl p-12 md:p-16 relative overflow-hidden">
+            <div className="relative z-10">
+              <div className="flex items-start justify-between gap-8">
+                <div>
+                  <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
+                    READY TO BECOME A GIT LEGEND?
+                  </h2>
+                  <p className="text-lg text-white/90 mb-8 max-w-xl">
+                    Join 50,000+ developers mastering the command line. Start your first session now — free, in-browser, no install required.
+                  </p>
+                  <div className="flex gap-4">
+                    <Link 
+                      href="/play"
+                      className="inline-flex items-center gap-2 border-2 border-white text-white px-6 py-3 rounded font-medium hover:bg-white/10 transition-colors"
+                    >
+                      INITIALIZE GAME
+                    </Link>
+                    <Link 
+                      href="/challenges"
+                      className="inline-flex items-center gap-2 bg-white text-git-green px-6 py-3 rounded font-medium hover:bg-white/90 transition-colors"
+                    >
+                      VIEW MODULES
+                      <ChevronRight className="w-4 h-4" />
+                    </Link>
+                  </div>
+                </div>
+                <div className="hidden md:block text-white/20">
+                  <div className="w-24 h-24 rounded-lg bg-white/10 flex items-center justify-center">
+                    <span className="font-mono text-4xl">&gt;_</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </motion.div>
       </section>
 
       {/* Footer */}
-      <footer className="relative z-10 py-12 px-6 border-t border-white/10">
-        <div className="max-w-6xl mx-auto text-center">
-          <div className="flex items-center justify-center space-x-2 mb-4">
-            <Terminal className="w-6 h-6 text-git-blue" />
-            <span className="font-display text-xl font-bold gradient-text">Git Mastery</span>
+      <footer className="relative z-10 py-16 px-6 border-t border-white/10">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between gap-12">
+          <div className="flex-1">
+            <div className="flex items-center space-x-2 mb-4">
+              <div className="w-8 h-8 bg-git-green flex items-center justify-center rounded">
+                <span className="text-white font-mono text-lg">&gt;</span>
+              </div>
+              <span className="font-display font-semibold text-xl tracking-tight">TERMUX</span>
+            </div>
+            <p className="text-gray-400 text-sm max-w-md mb-6">
+              The browser-based terminal game that turns Git commands into muscle memory. No install. No risk.
+            </p>
+            <div className="flex gap-4">
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <Github className="w-5 h-5" />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <Twitter className="w-5 h-5" />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <Mail className="w-5 h-5" />
+              </a>
+            </div>
           </div>
-          <p className="text-gray-400">
-            © 2024 Git Mastery. Built with ❤️ for developers worldwide.
-          </p>
+          <div className="flex gap-16">
+            <div>
+              <h4 className="font-display font-semibold mb-4">GAME</h4>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li><Link href="/play" className="hover:text-white transition-colors">Play</Link></li>
+                <li><Link href="/challenges" className="hover:text-white transition-colors">Challenges</Link></li>
+                <li><Link href="/leaderboard" className="hover:text-white transition-colors">Leaderboard</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-display font-semibold mb-4">PLATFORM</h4>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li><Link href="/docs" className="hover:text-white transition-colors">Docs</Link></li>
+                <li><Link href="/community" className="hover:text-white transition-colors">Community</Link></li>
+                <li><Link href="/login" className="hover:text-white transition-colors">Login</Link></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="max-w-6xl mx-auto mt-12 pt-8 border-t border-white/10 text-xs text-gray-500">
+          © 2024 TERMUX. All rights reserved. v2.0
         </div>
       </footer>
     </div>
   )
-} 
+}
