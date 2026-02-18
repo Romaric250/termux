@@ -78,18 +78,18 @@ export default function AnimatedTerminal() {
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6, delay: 0.2 }}
-      className="flex-1 max-w-xl"
+      className="flex-1 w-full max-w-xl min-w-0"
     >
       <div className="bg-[#1a1a1a] rounded-lg overflow-hidden border border-white/10 shadow-2xl">
-        <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10">
+        <div className="flex items-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 border-b border-white/10">
           <div className="flex gap-2">
             <div className="w-3 h-3 rounded-full bg-red-500/80" />
             <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
             <div className="w-3 h-3 rounded-full bg-green-500/80" />
           </div>
-          <span className="text-xs text-gray-400 ml-4 font-mono">git root@termux-internal</span>
+          <span className="text-[10px] sm:text-xs text-gray-400 ml-2 sm:ml-4 font-mono truncate">git root@termux-internal</span>
         </div>
-        <div className="p-4 font-mono text-sm min-h-[280px]">
+        <div className="p-3 sm:p-4 font-mono text-xs sm:text-sm min-h-[220px] sm:min-h-[280px] overflow-x-auto">
           {TERMINAL_BLOCKS.slice(0, completedCount).map((block, i) => (
             <div key={i} className={block.type === 'command' ? 'text-git-green' : 'text-gray-300 mt-2'}>
               {block.type === 'command' ? block.text : renderOutput(block.text)}

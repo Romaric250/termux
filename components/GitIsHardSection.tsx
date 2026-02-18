@@ -26,20 +26,20 @@ const SCENARIOS = [
 
 export default function GitIsHardSection() {
   return (
-    <section className="relative z-10 py-20 px-6 border-t border-white/10">
+    <section className="relative z-10 py-12 sm:py-16 md:py-20 px-4 sm:px-6 border-t border-white/10">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         className="max-w-6xl mx-auto"
       >
-        <h2 className="font-display text-3xl md:text-4xl font-bold text-center mb-4">
+        <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-3 sm:mb-4">
           Git is Hard. We made it a Game.
         </h2>
-        <p className="text-lg text-gray-400 text-center mb-16 max-w-2xl mx-auto">
+        <p className="text-base sm:text-lg text-gray-400 text-center mb-10 sm:mb-16 max-w-2xl mx-auto px-2">
           Real scenarios. Real commands. Zero risk to your actual codebase.
         </p>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
           {SCENARIOS.map((item, i) => (
             <motion.div
               key={i}
@@ -47,7 +47,7 @@ export default function GitIsHardSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="bg-git-gray/50 border border-white/10 rounded-lg p-6 hover:border-git-green/30 transition-colors"
+              className="bg-git-gray/50 border border-white/10 rounded-lg p-5 sm:p-6 hover:border-git-green/30 transition-colors"
             >
               <div className="mb-4">{item.icon}</div>
               <h3 className="font-display text-lg font-bold mb-2">{item.title}</h3>

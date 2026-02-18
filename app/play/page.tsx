@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Header from '@/components/Header'
 import { useState, useEffect } from 'react'
 import { 
   Terminal, 
@@ -121,17 +122,18 @@ export default function PlayPage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-git-dark via-git-gray to-git-dark p-6">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-git-dark via-git-gray to-git-dark">
+      <Header />
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6">
         {/* Header */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex justify-between items-center mb-8"
+          className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8"
         >
           <div className="flex items-center space-x-3">
-            <Terminal className="w-8 h-8 text-git-blue" />
-            <h1 className="font-display text-3xl font-bold gradient-text">Git Challenge</h1>
+            <Terminal className="w-7 h-7 sm:w-8 sm:h-8 text-git-blue shrink-0" />
+            <h1 className="font-display text-2xl sm:text-3xl font-bold gradient-text">Git Challenge</h1>
           </div>
           
           <div className="flex items-center space-x-4">
@@ -150,11 +152,11 @@ export default function PlayPage() {
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="glass-effect rounded-xl p-8 mb-8"
+          className="glass-effect rounded-xl p-5 sm:p-6 md:p-8 mb-6 sm:mb-8"
         >
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <h2 className="text-2xl font-bold text-white mb-2">{currentChallenge.name}</h2>
+          <div className="flex items-center justify-between mb-4 sm:mb-6">
+            <div className="min-w-0">
+              <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">{currentChallenge.name}</h2>
               <div className="flex items-center space-x-2">
                 <Target className="w-4 h-4 text-git-blue" />
                 <span className="text-sm text-gray-400 capitalize">{currentChallenge.category}</span>
@@ -163,29 +165,29 @@ export default function PlayPage() {
             </div>
           </div>
 
-          <div className="mb-6">
-            <p className="text-gray-300 text-lg mb-4">{currentChallenge.description}</p>
-            <div className="bg-git-gray rounded-lg p-4 border border-white/10">
+          <div className="mb-4 sm:mb-6">
+            <p className="text-gray-300 text-base sm:text-lg mb-3 sm:mb-4">{currentChallenge.description}</p>
+            <div className="bg-git-gray rounded-lg p-3 sm:p-4 border border-white/10 overflow-x-auto">
               <p className="text-git-blue font-mono">{currentChallenge.task}</p>
             </div>
           </div>
 
           {/* Terminal Input */}
-          <form onSubmit={handleSubmit} className="mb-6">
-            <div className="flex items-center space-x-3 bg-git-gray rounded-lg p-4 border border-white/10">
+          <form onSubmit={handleSubmit} className="mb-4 sm:mb-6">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 bg-git-gray rounded-lg p-3 sm:p-4 border border-white/10">
               <span className="text-git-green font-mono">$</span>
               <input
                 type="text"
                 value={userInput}
                 onChange={(e) => setUserInput(e.target.value)}
                 placeholder="Enter your Git command..."
-                className="flex-1 bg-transparent text-white font-mono focus:outline-none focus-ring"
+                className="flex-1 min-w-0 bg-transparent text-white font-mono focus:outline-none focus-ring text-sm sm:text-base"
                 disabled={isCorrect === true}
               />
               <button
                 type="submit"
                 disabled={!userInput.trim() || isCorrect === true}
-                className="bg-git-blue hover:bg-git-purple disabled:bg-gray-600 text-white px-4 py-2 rounded transition-colors focus-ring"
+                className="bg-git-blue hover:bg-git-purple disabled:bg-gray-600 text-white px-4 py-2 rounded transition-colors focus-ring shrink-0"
               >
                 Enter
               </button>
@@ -226,7 +228,7 @@ export default function PlayPage() {
           )}
 
           {/* Actions */}
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-between gap-3">
             <button
               onClick={() => setShowHint(!showHint)}
               className="flex items-center space-x-2 text-git-orange hover:text-git-blue transition-colors focus-ring"
@@ -258,10 +260,10 @@ export default function PlayPage() {
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="glass-effect rounded-xl p-6"
+          className="glass-effect rounded-xl p-4 sm:p-6"
         >
-          <h3 className="text-lg font-semibold text-white mb-4">Progress</h3>
-          <div className="grid grid-cols-3 gap-4">
+          <h3 className="text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4">Progress</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
             {sampleChallenges.map((challenge) => (
               <div
                 key={challenge.id}
